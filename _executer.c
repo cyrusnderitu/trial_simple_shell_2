@@ -7,11 +7,11 @@
 void _execute(char *ptr)
 {
 	pid_t child;
-	struct stat st;
-	char delim[] = " ", *arr[1024];
-	char *token = _strtok(ptr, delim);
+	char *arr[1024];
+	char *token;
 	int i = 0;
 
+	token = _strtok(ptr, " ");
 	if (token == NULL)
 	{
     		free(ptr);
