@@ -6,7 +6,7 @@
  */
 int main(void)
 {
-	char command[100];
+	char *command;
 	char *token;
 	char *argv1[100];
 	int i = 0, j = 0;
@@ -38,7 +38,7 @@ int main(void)
 				execve(argv1[0], argv1, NULL);
 				exit(1);
 			}
-			else if (pid > 0)
+			else if (child > 0)
 			{
 				wait(&status);
 			}
