@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
- * breakdown - tokenizes the user input and parses it for evaluation
+ * breakdown - creates child process and run execve
  * @ptr: pointer to the user input string for tokenizing
  */
 
-void breakdown(char *ptr)
+void _execute(char *ptr)
 {
 	pid_t child;
 	struct stat st;
