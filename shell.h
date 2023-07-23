@@ -11,7 +11,6 @@
 char *_strcpy(char *dest, char *src);
 int  _strcmp(char *str1, char *str2);
 char *collect_args(void);
-void _execute(char *ptr);
 char *_strcat(char *dest, char *src);
 int _strlen(char *s);
 char *_strtok(char *str, const char *delim);
