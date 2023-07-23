@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * main - entry point to compile
+ * main - main file for computing all functions of shell
  * Return: 0 on success
  */
 int main(void)
@@ -22,8 +22,9 @@ int main(void)
 			if (command[_strlen(command) - 1] == '\n')
 				command[_strlen(command) - 1] = '\0';
 			if (_strcmp(command, "exit") == 0)
-				free(command);
-				break;
+			{
+				kill(getpid(), SIGINT);
+			}
 			token = _strtok(command, " ");
 			while (token != NULL)
 			{
@@ -57,7 +58,6 @@ int main(void)
 				command[_strlen(command) - 1] = '\0';
 			if (_strcmp(command, "exit") == 0)
 				break;
-
 			token = _strtok(command, " ");
 			while (token != NULL)
 			{
@@ -66,16 +66,14 @@ int main(void)
 				token = _strtok(NULL, " ");
 			}
 			argv1[j] = NULL;
-
-			pid = fork();
-
-			if (pid == 0)
+			child = fork();
+			if (child == 0)
 			{
 				execve(argv1[0], argv1, NULL);
 				fprintf(stderr, "./hsh: No such file or directory\n");
 				exit(1);
 			}
-			else if (pid > 0)
+			else if (child > 0)
 			{
 				wait(&status);
 			}
