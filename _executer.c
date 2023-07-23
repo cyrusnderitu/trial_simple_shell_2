@@ -17,21 +17,21 @@ void _execute(char *ptr)
     		free(ptr);
 		exit(0);
 	}
-	while (portion != NULL)
+	while (token != NULL)
 	{
 		arr[i] = token;
 		i++;
-		token = _strtok(NULL, delim);
+		token = _strtok(NULL, " ");
 	}
 	if (_strcmp(arr[0], "exit") == 0)
 	{
 		kill(getpid(), SIGINT);
+		break;
 	}
 	else
 	{
 		child = fork();
 	}
-	break;	
 	if (child == 0 && (execve(arr[0], arr, NULL) == -1))
 		perror("Could not execute");
 }
