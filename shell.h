@@ -14,5 +14,6 @@ char *collect_args(void);
 void _execute(char *ptr);
 char *_strcat(char *dest, char *src);
 int _strlen(char *s);
+char *_strtok(char *str, const char *delim)
 
 #endif
