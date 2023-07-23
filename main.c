@@ -18,7 +18,7 @@ int main(int argc, char *argv[]__attribute__((unused)))
 		{
 			testr = malloc(sizeof(char) * nget + 1);
 			_strcpy(testr, line);
-			breakdown(testr);
+			_execute(testr);
 			wait(NULL);
 		}
 		free(line);
@@ -31,7 +31,7 @@ int main(int argc, char *argv[]__attribute__((unused)))
 			free(testr);
 			continue;
 		}
-		breakdown(testr);
+		_execute(testr);
 		wait(NULL);
 		free(testr);
 	} while (1);
