@@ -32,7 +32,7 @@ int main(int argc, char *argv[]__attribute__((unused)))
 			free(testr);
 			continue;
 		}
-		tokenizer(testr);
+		breakdown(testr);
 		wait(NULL);
 		free(testr);
 	} while (1);
