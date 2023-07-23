@@ -10,7 +10,7 @@ int main(void)
 	char *token;
 	char *argv1[100];
 	int i = 0, j = 0;
-	int status;
+	int status, cmd_len = 0;
 	pid_t child;
 
 	if (isatty(fileno(stdin)))
@@ -19,8 +19,9 @@ int main(void)
 		{
 			write(STDOUT_FILENO, "#cisfun$ ", 9);
 			command = collect_args();
-			if (command[_strlen(command) - 1] == '\n')
-				command[_strlen(command) - 1] = '\0';
+			cmd_len _strlen(command);
+			if (command[cmd_len - 1] == '\n')
+				command[cmd_len - 1] = '\0';
 			if (_strcmp(command, "exit") == 0)
 			{
 				kill(getpid(), SIGINT);
