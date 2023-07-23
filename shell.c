@@ -53,10 +53,12 @@ int main(void)
 	}
 	else
 	{
-		while (fgets(command, sizeof(command), stdin) != NULL)
+		while (collect_args())
 		{
-			if (command[_strlen(command) - 1] == '\n')
-				command[_strlen(command) - 1] = '\0';
+			command = collect_args();
+			cmd_len = _strlen(command);
+			if (command[cmd_len - 1] == '\n')
+				command[cmd_len - 1] = '\0';
 			if (_strcmp(command, "exit") == 0)
 				break;
 			token = _strtok(command, " ");
