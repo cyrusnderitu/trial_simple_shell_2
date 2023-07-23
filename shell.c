@@ -1,39 +1,90 @@
 #include "shell.h"
 
 /**
- * main - entry point to compiling our shell
- * @argc:  argument count
- * @argv: argument vector
- *Return: 0 when successful, -1 otherwise
+ * main - entry point to compile
+ * Return: 0 on success
  */
-int main(int argc, char *argv[]__attribute__((unused)))
+int main(void)
 {
-	char *testr, *line = NULL;
-	size_t buff;
-	int nget;
+	char command[100];
+	char *token;
+	char *argv1[100];
+	int i = 0, j = 0;
+	int status;
+	pid_t child;
 
-	if (isatty(STDIN_FILENO) == 0 && argc == 1)
+	if (isatty(fileno(stdin)))
 	{
-		while ((nget = getline(&line, &buff, stdin)) > 0)
+		while (1)
 		{
-			testr = malloc(sizeof(char) * nget + 1);
-			_strcpy(testr, line);
-			_execute(testr);
-			wait(NULL);
+			write(STDOUT_FILENO, "#cisfun$ ", 9);
+			command = collect_args();
+			if (command[_strlen(command) - 1] == '\n')
+				command[_strlen(command) - 1] = '\0';
+			if (_strcmp(command, "exit") == 0)
+				free(command);
+				break;
+			token = _strtok(command, " ");
+			while (token != NULL)
+			{
+				argv1[i] = token;
+				i++;
+				token = _strtok(NULL, " ");
+			}
+			argv1[i] = NULL;
+			child = fork();
+			if (child == 0)
+			{
+				_execute(argv1);
+				exit(1);
+			}
+			else if (pid > 0)
+			{
+				wait(&status);
+			}
+			else
+			{
+				print_error("fork failed");
+				exit(1);
+			}
 		}
-		free(line);
-		return (0);
 	}
-	do {
-		testr = collect_args();
-		if (testr[0] == '\0' || _strcmp(testr, "\n") == 0)
+	else
+	{
+		while (fgets(command, sizeof(command), stdin) != NULL)
 		{
-			free(testr);
-			continue;
+			if (command[_strlen(command) - 1] == '\n')
+				command[_strlen(command) - 1] = '\0';
+			if (_strcmp(command, "exit") == 0)
+				break;
+
+			token = _strtok(command, " ");
+			while (token != NULL)
+			{
+				argv1[j] = token;
+				j++;
+				token = _strtok(NULL, " ");
+			}
+			argv1[j] = NULL;
+
+			pid = fork();
+
+			if (pid == 0)
+			{
+				_execute(argv1);
+				fprintf(stderr, "./hsh: No such file or directory\n");
+				exit(1);
+			}
+			else if (pid > 0)
+			{
+				wait(&status);
+			}
+			else
+			{
+				print_error("fork failed");
+				exit(1);
+			}
 		}
-		_execute(testr);
-		wait(NULL);
-		free(testr);
-	} while (1);
+	}
 	return (0);
 }
