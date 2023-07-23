@@ -19,7 +19,7 @@ int main(void)
 		{
 			write(STDOUT_FILENO, "#cisfun$ ", 9);
 			command = collect_args();
-			cmd_len _strlen(command);
+			cmd_len = _strlen(command);
 			if (command[cmd_len - 1] == '\n')
 				command[cmd_len - 1] = '\0';
 			if (_strcmp(command, "exit") == 0)
