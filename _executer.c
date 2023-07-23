@@ -26,7 +26,6 @@ void _execute(char *ptr)
 	if (_strcmp(arr[0], "exit") == 0)
 	{
 		kill(getpid(), SIGINT);
-		break;
 	}
 	else
 	{
