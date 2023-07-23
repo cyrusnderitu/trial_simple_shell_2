@@ -2,7 +2,7 @@
 
 /**
  * _execute - creates child process and run execve
- * @ptr: pointer to the user input string for tokenizing
+ * @ptr: container for stdin
  */
 void _execute(char *ptr)
 {
