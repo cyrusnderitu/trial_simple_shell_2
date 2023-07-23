@@ -10,7 +10,6 @@ char *collect_args(void)
 	char *ptr = NULL, *line = NULL;
 	ssize_t nread;
 
-	write(STDOUT_FILENO, "#cisfun$ ", 9);
 	while ((nread = getline(&line, &len, stdin)) != -1)
 	{
 		ptr = malloc(nread + 1);
