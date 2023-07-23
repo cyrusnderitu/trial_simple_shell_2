@@ -101,7 +101,6 @@ void breakdown(char *ptr)
 
 	if (portion == NULL)
 	{
-		free(ptr);
 		exit(0);
 	}
 	while (portion != NULL)
