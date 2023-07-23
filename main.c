@@ -20,7 +20,6 @@ int main(int argc, char *argv[]__attribute__((unused)))
 			_strcpy(testr, line);
 			breakdown(testr);
 			wait(NULL);
-			free(testr);
 		}
 		free(line);
 		return (0);
