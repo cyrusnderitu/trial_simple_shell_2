@@ -11,17 +11,18 @@ void finalizer(char *ptr)
 	char delim[] = " \n", *arr[1024], PATH[100] = "/bin/";
 	int i = 0;
 
-	char *portion = _strtok(ptr, delim);
-	if (portion == NULL)
+	char *token;
+	token = strtok(ptr, delim);
+	if (token == NULL)
 	{
-    free(ptr);
+    		free(ptr);
 		exit(0);
 	}
-	while (portion != NULL)
+	while (token != NULL)
 	{
-		arr[i] = portion;
+		arr[i] = token;
 		i++;
-		portion = strtok(NULL, delim);
+		token = strtok(NULL, delim);
 	}
 
 	switch (stat(arr[0], &st))
