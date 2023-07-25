@@ -1,27 +1,45 @@
 #include "shell.h"
 
 /**
- *collect_args - collects input from user
- *Return: pointer to array
+ * _strtok - breaks string str into a series of tokens
+ * using the delimiter delim
+ *
+ * @str: string to be split into tokens
+ * @delim: specified delimeter
+ * Return: next token
  */
-char *collect_args(void)
+char *_strtok(char *str, const char *delim)
 {
-	size_t len = 0;
-	char *ptr = NULL, *line = NULL;
-	ssize_t nread;
+	static char *last_token = NULL;
+	char *token;
 
-	write(STDOUT_FILENO, "#cisfun$ ", 9);
-	while ((nread = getline(&line, &len, stdin)) != -1)
+	if (str != NULL)
+		last_token = str;
+
+	if (last_token == NULL)
+		return (NULL);
+
+	while (*last_token && strchr(delim, *last_token))
+		last_token++;
+	if (!*last_token)
 	{
-		ptr = malloc(nread + 1);
-		_strcpy(ptr, line);
-		free(line);
-		break;
+		last_token = NULL;
+		return (NULL);
 	}
-	if (nread == -1)
+
+	token = last_token;
+
+	while (*last_token && !strchr(delim, *last_token))
+		last_token++;
+
+	if (*last_token)
 	{
-		write(1, "\n", 1);
-		exit(0);
+		*last_token = '\0';
+		last_token++;
 	}
-	return (ptr);
+
+	else
+		last_token = NULL;
+
+	return (token);
 }

@@ -1,17 +1,17 @@
 #include "shell.h"
+
 /**
- * breakdown - tokenizes the user input and parses it for evaluation
+ * finalizer - tokenizes the user input and parses it for evaluation
  * @ptr: pointer to the user input string for tokenizing
  */
-
-void breakdown(char *ptr)
+void finalizer(char *ptr)
 {
 	pid_t child;
 	struct stat st;
 	char delim[] = " \n", *arr[1024], PATH[100] = "/bin/";
-	char *portion = strtok(ptr, delim);
 	int i = 0;
 
+	char *portion = _strtok(ptr, delim);
 	if (portion == NULL)
 	{
     free(ptr);

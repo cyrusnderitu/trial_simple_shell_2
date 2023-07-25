@@ -8,10 +8,11 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+
 char *_strcpy(char *dest, char *src);
 int  _strcmp(char *str1, char *str2);
 char *collect_args(void);
-void breakdown(char *ptr);
+void finalizer(char *ptr);
 char *_strcat(char *dest, char *src);
 int _strlen(char *s);
 
