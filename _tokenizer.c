@@ -3,7 +3,6 @@
 /**
  * _strtok - breaks string str into a series of tokens
  * using the delimiter delim
- *
  * @str: string to be split into tokens
  * @delim: specified delimeter
  * Return: next token
