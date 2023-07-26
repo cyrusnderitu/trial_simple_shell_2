@@ -10,8 +10,8 @@ void finalizer(char *ptr)
 	struct stat st;
 	char delim[] = " \n", *arr[1024], PATH[100] = "/bin/";
 	int i = 0;
-
 	char *token;
+
 	token = strtok(ptr, delim);
 	if (token == NULL)
 	{
@@ -43,8 +43,9 @@ void finalizer(char *ptr)
 					if (arr[1] != NULL)
 					{
 						if (chdir(arr[1]) == -1)
+						{
 							perror("cd");
-							}
+						}
 					else
 						continue;
 				}
