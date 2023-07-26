@@ -26,7 +26,7 @@ void finalizer(char *ptr)
 	}
 
 	switch (stat(arr[0], &st))
-		{
+	{
 			case 0:
 			{
 				child = fork();
@@ -57,6 +57,7 @@ void finalizer(char *ptr)
 				break;
 			}
 		}
-	if (child == 0 && (execve(arr[0], arr, NULL) == -1))
-		perror("Could not execute");
+		if (child == 0 && (execve(arr[0], arr, NULL) == -1))
+			perror("Could not execute");
+	}
 }
