@@ -37,12 +37,12 @@ void finalizer(char *ptr)
 				if (_strcmp(arr[0], "exit") == 0)
 				{
 					kill(getpid(), SIGINT);
-				} 
-				else if (_strcmp(arr[0], "cd") == 0) 
+				}
+				else if (_strcmp(arr[0], "cd") == 0)
 				{
-                	if (arr[1] != NULL) 
+                	if (arr[1] != NULL)
 					{
-                    	if (chdir(arr[1]) == -1) 
+                    	if (chdir(arr[1]) == -1)
                         	perror("cd");
                 	}
 					else
