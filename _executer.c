@@ -41,9 +41,9 @@ void finalizer(char *ptr)
                 	if (arr[1] != NULL) {
                     	if (chdir(arr[1]) == -1) {
                         perror("cd");
-                    }
-                }
-                continue;
+                    	}
+                	}
+                	continue;
             	}
 				_strcat(PATH, arr[0]);
 				if (stat(PATH, &st) != 0)
