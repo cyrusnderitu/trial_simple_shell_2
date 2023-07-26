@@ -15,7 +15,7 @@ void finalizer(char *ptr)
 	token = strtok(ptr, delim);
 	if (token == NULL)
 	{
-    		free(ptr);
+		free(ptr);
 		exit(0);
 	}
 	while (token != NULL)
@@ -40,14 +40,14 @@ void finalizer(char *ptr)
 				}
 				else if (_strcmp(arr[0], "cd") == 0)
 				{
-                	if (arr[1] != NULL)
+					if (arr[1] != NULL)
 					{
-                    	if (chdir(arr[1]) == -1)
-                        	perror("cd");
-                	}
+						if (chdir(arr[1]) == -1)
+							perror("cd");
+							}
 					else
-                		continue;
-            	}
+						continue;
+				}
 				_strcat(PATH, arr[0]);
 				if (stat(PATH, &st) != 0)
 					perror("could not find file");
