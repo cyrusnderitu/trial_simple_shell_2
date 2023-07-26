@@ -37,7 +37,14 @@ void finalizer(char *ptr)
 				if (_strcmp(arr[0], "exit") == 0)
 				{
 					kill(getpid(), SIGINT);
-				}
+				} else if (_strcmp(arr[0], "cd") == 0) {
+                	if (arr[1] != NULL) {
+                    	if (chdir(arr[1]) == -1) {
+                        perror("cd");
+                    }
+                }
+                continue;
+            	}
 				_strcat(PATH, arr[0]);
 				if (stat(PATH, &st) != 0)
 					perror("could not find file");
