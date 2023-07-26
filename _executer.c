@@ -34,26 +34,21 @@ void finalizer(char *ptr)
 			}
 			default:
 			{
-				if (_strcmp(arr[0], 
-				"exit") == 0)
+				if (_strcmp(arr[0], "exit") == 0)
 				{
 					kill(getpid(), SIGINT);
 				}
-				else if (_strcmp(arr[0], 
-				"cd") == 0)
+				else if (_strcmp(arr[0], "cd") == 0)
 				{
-					if (arr[1] != NULL 
-					&& chdir(arr[1]) == -1)
+					if (arr[1] != NULL && chdir(arr[1]) == -1)
 					{
 						perror("cd");
 					}
-					continue;
-				}
+					else
+						continue;
 				_strcat(PATH, arr[0]);
-				if (stat(PATH, &st) 
-				!= 0)
-					perror("could 
-					not find file");
+				if (stat(PATH, &st) != 0)
+					perror("could not find file");
 				else
 				{
 					arr[0] = PATH;
@@ -62,7 +57,6 @@ void finalizer(char *ptr)
 				break;
 			}
 		}
-	if (child == 0 && 
-	(execve(arr[0], arr, NULL) == -1))
+	if (child == 0 && (execve(arr[0], arr, NULL) == -1))
 		perror("Could not execute");
 }
