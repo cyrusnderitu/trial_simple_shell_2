@@ -16,5 +16,6 @@ void finalizer(char *ptr);
 void print_error(char *msg);
 char *_strcat(char *dest, char *src);
 int _strlen(char *s);
+void action(char *ptr);
 
 #endif
