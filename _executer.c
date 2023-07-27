@@ -6,6 +6,7 @@
  */
 void finalizer(char *ptr)
 {
+	struct stat st;
 	pid_t child;
 	char delim[] = " \n", *arr[1024], PATH[100] = "/bin/";
 	int i = 0;
