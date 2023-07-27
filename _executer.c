@@ -23,6 +23,40 @@ void finalizer(char *ptr)
 		i++;
 		token = strtok(NULL, delim);
 	}
-	action(arr);
-	return (0);
+	
+	switch (stat(arr[0], &st))
+    {
+        case 0:
+        {
+            child = fork();
+            break;
+        }
+        default:
+        {
+            if (_strcmp(arr[0], "exit") == 0)
+            {
+                kill(getpid(), SIGINT);
+            }
+            else if (_strcmp(arr[0], "cd") == 0)
+            {
+                if (arr[1] != NULL && chdir(arr[1]) == -1)
+                {
+                    perror("cd");
+                }
+                else
+                    continue;
+            _strcat(PATH, arr[0]);
+            if (stat(PATH, &st) != 0)
+                perror("could not find file");
+            else
+            {
+                arr[0] = PATH;
+                child = fork();
+            }
+            break;
+            }
+        }
+    	if (child == 0 && (execve(arr[0], arr, NULL) == -1))
+        	perror("Could not execute");
+	}
 }
