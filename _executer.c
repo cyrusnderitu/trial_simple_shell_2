@@ -44,7 +44,10 @@ void finalizer(char *ptr)
                     perror("cd");
                 }
                 else
+				{
                     continue;
+				}
+			}
             _strcat(PATH, arr[0]);
             if (stat(PATH, &st) != 0)
                 perror("could not find file");
@@ -54,7 +57,6 @@ void finalizer(char *ptr)
                 child = fork();
             }
             break;
-            }
         }
     	if (child == 0 && (execve(arr[0], arr, NULL) == -1))
         	perror("Could not execute");
