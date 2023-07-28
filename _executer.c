@@ -49,8 +49,6 @@ void finalizer(char *ptr)
                     		perror("cd");
                 	}
 		}
-                
-                continue;
 	    }
 	}
             _strcat(PATH, arr[0]);
